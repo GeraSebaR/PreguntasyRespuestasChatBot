@@ -1,3 +1,28 @@
+<?php session_start(); 
+include_once('includes/config.php');
+// Code for login 
+if(isset($_POST['login']))
+{
+$password=$_POST['password'];
+$dec_password=$password;
+$useremail=$_POST['uemail'];
+$ret= mysqli_query($con,"SELECT id,fname FROM users WHERE email='$useremail' and password='$dec_password'");
+$num=mysqli_fetch_array($ret);
+if($num>0)
+{
+
+$_SESSION['id']=$num['id'];
+$_SESSION['name']=$num['fname'];
+header("location:preg-resp.php");
+
+}
+else
+{
+echo "<script>alert('Invalid username or password');</script>";
+}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,65 +31,60 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Principal | Sistema de registro e inicio de sesión </title>
+        <title>Usuario de Inicio de sesión | Sistema de registro de inicio de sesión</title>
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
-    <body>
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.php">ChatBot-Cuestionario</a>
-            <!-- Sidebar Toggle-->
-
-            <!-- Navbar Search-->
-          
-        </nav>
-        <div id="layoutSidenav">
-       
-            <div id="layoutSidenav_content">
+    <body class="bg-primary">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
                 <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Registro de preguntas y respuestas del ChatBot</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="index.php">Principal</a></li>
-              
-                        </ol>
-        <div class="row" >
-                            <div class="col-xl-4 col-md-6" >
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Preguntas y Respuestas</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="signup.php">Registrate aquí las preguntas y respuestas</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+
+<div class="card-header">
+<h2 align="center">::: Bienvenido :::</h2>
+<hr />
+    <h3 class="text-center font-weight-light my-4">Inicio de sesión</h3></div>
+                                    <div class="card-body">
+                                        
+                                        <form method="post">
+                                            
+<div class="form-floating mb-3">
+<input class="form-control" name="uemail" type="email" placeholder="name@example.com" required/>
+<label for="inputEmail">Dirección de Correo Electrónico</label>
+</div>
+                                            
+
+<div class="form-floating mb-3">
+<input class="form-control" name="password" type="password" placeholder="Password" required />
+<label for="inputPassword">Clave de acceso</label>
+</div>
+
+
+<div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+<a class="small" href="password-recovery.php">¿Olvido la clave?</a>
+<button class="btn btn-primary" name="login" type="submit">Iniciar</button>
+</div>
+</form>
+</div>
+<div class="card-footer text-center py-3">
+
+
+</div>
+                                    <div class="card-footer text-center py-3">
+                                        <div class="small"><a href="signup.php">¿Necesitas una cuenta? ¡Registrarse!</a></div>
+                                          <div class="small"><a href="index.php">Volver al principal</a></div>
                                     </div>
                                 </div>
                             </div>
-<!--<div class="col-xl-4 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">ya esta registrado</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="login.php">Iniciar sesion aqui</a>
-                                    </div>
-                                </div>
-                            </div>-->
-
-<!--<div class="col-xl-4 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Admin panel</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="admin">Iniciar sesion aqui</a>
-                          
-                                    </div>
-                                </div>
-                            </div>-->
-
-                            </div>
-                        <div style="height: 100vh"></div>
-            
+                        </div>
                     </div>
                 </main>
-   <?php include_once('includes/footer.php');?>
             </div>
+<?php include('includes/footer.php');?>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

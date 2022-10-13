@@ -65,13 +65,13 @@ echo "<script>alert('Invalid username or password');</script>";
 
 
 <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-<a class="small" href="password-recovery.php">Olvido clave?</a>
+<a class="small" href="password-recovery.php">¿Olvido la clave?</a>
 <button class="btn btn-primary" name="login" type="submit">Iniciar</button>
 </div>
 </form>
 </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="signup.php">Necesita una cuenta? Registrarse!</a></div>
+                                        <div class="small"><a href="signup.php">¿Necesita una cuenta? ¡Registrarse!</a></div>
                                           <div class="small"><a href="index.php">Volver al principal</a></div>
                                     </div>
                                 </div>
